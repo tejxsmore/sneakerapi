@@ -1,11 +1,10 @@
-# Go Gin Web Server
+# Sneaker API
 
-This repo can be used as a starting point to deploy [Go](https://golang.org/) web applications on Render.
+This API provides endpoints to access information about sneakers including brands, models, prices, and availability.
 
-It is based on the [realtime chat](https://github.com/gin-gonic/examples/tree/master/realtime-advanced) example powered by the [Gin](https://github.com/gin-gonic/gin) web framework.
+## Getting Started
 
-The sample app is up at https://go-gin.onrender.com.
+To get started with the API, follow these steps:
 
-## Deployment
-
-See the guide at https://render.com/docs/deploy-go-gin.
+2. **Base URL**: The base URL for all API endpoints is `https://sneakerapi-jqzi.onrender.com/`.
+3. **Documentation**: Refer to the API documentation for details on available endpoints and parameters.
