@@ -6,5 +6,17 @@ This API provides endpoints to access information about sneakers including brand
 
 To get started with the API, follow these steps:
 
-2. **Base URL**: The base URL for all API endpoints is `https://sneakerapi-jqzi.onrender.com/`.
-3. **Documentation**: Refer to the API documentation for details on available endpoints and parameters.
+**Base URL**: The base URL for all API endpoints is 
+```bash
+https://thesneakerapi.onrender.com/
+```
+
+1. To fetch nike featured products use `{baseUrl}/nike`
+
+2. To fetch Air Max Sneakers use `{baseUrl}/airmax`
+
+3. To fetch Air Force Sneakers use `{baseUrl}/airforce`
+ 
+4. To fetch Air Jordan Sneakers use `{baseUrl}/airjordan`
+ 
+5. To fetch all kind of Sneakers use `{baseUrl}/all`
