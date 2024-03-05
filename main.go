@@ -1,7 +1,6 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
@@ -27,91 +26,59 @@ func StartGin() {
 	gin.SetMode(gin.ReleaseMode)
 
 	router := gin.New()
-	// router.LoadHTMLGlob("resources/*.templ.html")
 
-	router.GET("/featured", func(c *gin.Context) {
-		jsonFile, err := os.ReadFile("store/featured.json")
+	router.GET("/", func(c *gin.Context) {
+		c.File("index.html") // Provide the path to your index.html file
+	})
+
+	router.GET("/nike", func(c *gin.Context) {
+		jsonData, err := os.ReadFile("store/nike.json")
 		if err != nil {
-			c.String(500, "Failed to read JSON file")
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to read JSON file"})
 			return
 		}
-
-		var jsonData map[string]interface{}
-		err = json.Unmarshal(jsonFile, &jsonData)
-		if err != nil {
-			c.String(500, "Failed to parse JSON data")
-			return
-		}
-
-		c.JSON(200, jsonData)
+		c.Header("Content-Type", "application/json")
+		c.Data(http.StatusOK, "application/json", jsonData)
 	})
 
 	router.GET("/airmax", func(c *gin.Context) {
-		jsonFile, err := os.ReadFile("store/airmax.json")
+		jsonData, err := os.ReadFile("store/airmax.json")
 		if err != nil {
-			c.String(500, "Failed to read JSON file")
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to read JSON file"})
 			return
 		}
-
-		var jsonData map[string]interface{}
-		err = json.Unmarshal(jsonFile, &jsonData)
-		if err != nil {
-			c.String(500, "Failed to parse JSON data")
-			return
-		}
-
-		c.JSON(200, jsonData)
+		c.Header("Content-Type", "application/json")
+		c.Data(http.StatusOK, "application/json", jsonData)
 	})
 
 	router.GET("/airforce", func(c *gin.Context) {
-		jsonFile, err := os.ReadFile("store/airforce.json")
+		jsonData, err := os.ReadFile("store/airforce.json")
 		if err != nil {
-			c.String(500, "Failed to read JSON file")
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to read JSON file"})
 			return
 		}
-
-		var jsonData map[string]interface{}
-		err = json.Unmarshal(jsonFile, &jsonData)
-		if err != nil {
-			c.String(500, "Failed to parse JSON data")
-			return
-		}
-
-		c.JSON(200, jsonData)
+		c.Header("Content-Type", "application/json")
+		c.Data(http.StatusOK, "application/json", jsonData)
 	})
 
 	router.GET("/airjordan", func(c *gin.Context) {
-		jsonFile, err := os.ReadFile("store/airjordan.json")
+		jsonData, err := os.ReadFile("store/airjordan.json")
 		if err != nil {
-			c.String(500, "Failed to read JSON file")
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to read JSON file"})
 			return
 		}
-
-		var jsonData map[string]interface{}
-		err = json.Unmarshal(jsonFile, &jsonData)
-		if err != nil {
-			c.String(500, "Failed to parse JSON data")
-			return
-		}
-
-		c.JSON(200, jsonData)
+		c.Header("Content-Type", "application/json")
+		c.Data(http.StatusOK, "application/json", jsonData)
 	})
 
 	router.GET("/all", func(c *gin.Context) {
-		jsonFile, err := os.ReadFile("store/nike.json")
+		jsonData, err := os.ReadFile("store/products.json")
 		if err != nil {
-			c.String(500, "Failed to read JSON file")
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to read JSON file"})
 			return
 		}
-
-		var jsonData map[string]interface{}
-		err = json.Unmarshal(jsonFile, &jsonData)
-		if err != nil {
-			c.String(500, "Failed to parse JSON data")
-			return
-		}
-
-		c.JSON(200, jsonData)
+		c.Header("Content-Type", "application/json")
+		c.Data(http.StatusOK, "application/json", jsonData)
 	})
 
 	router.GET("/hello", func(c *gin.Context) {
@@ -125,4 +92,8 @@ func StartGin() {
 	if err := router.Run(":" + port); err != nil {
 		log.Panicf("error: %s", err)
 	}
+}
+
+func Asset(s string) {
+	panic("unimplemented")
 }
