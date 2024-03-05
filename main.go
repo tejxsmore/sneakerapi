@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
+	"net/http"
 	"os"
 	"runtime"
 
@@ -27,7 +28,6 @@ func StartWorkers() {
 	go statsWorker()
 }
 
-// StartGin starts gin web server with setting router.
 func StartGin() {
 	gin.SetMode(gin.ReleaseMode)
 
@@ -40,11 +40,15 @@ func StartGin() {
 	router.POST("/room-post/:roomid", roomPOST)
 	router.GET("/stream/:roomid", streamRoom)
 
+	router.GET("/hello", func(c *gin.Context) {
+		c.String(http.StatusOK, "Hello, World!")
+	})
+
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "8080"
 	}
 	if err := router.Run(":" + port); err != nil {
-        log.Panicf("error: %s", err)
+		log.Panicf("error: %s", err)
 	}
 }
